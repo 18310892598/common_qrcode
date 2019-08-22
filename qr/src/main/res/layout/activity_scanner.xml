@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ole.travel.qr.zxing.ScannerView
+        android:id="@+id/scanner_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/scan_bg" />
+
+
+    <TextView
+        android:id="@+id/flash_light_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="70dp"
+        android:drawableTop="@drawable/select_flash_light"
+        android:drawablePadding="10dp"
+        android:text="打开"
+        android:gravity="center_horizontal"
+        android:textColor="#ff0000ff"
+        android:textSize="16dp" />
+
+
+
+</RelativeLayout>
