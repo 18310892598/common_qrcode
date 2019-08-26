@@ -1,0 +1,46 @@
+apply plugin: 'maven'
+
+ext {
+    mavenConfig = [
+            username    : "DingXiaoWei",
+            userpassword: "B0C1F4AE795911E89C2188E9FE6@C0E4",
+            debugUrl    : "https://nexus.olafuwu.com/repository/maven-oleyc-android/",
+            releaseUrl  : "https://nexus.olafuwu.com/repository/maven-oleyc-android-releases/"
+    ]
+}
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                pom.groupId = 'com.ole.travel'
+                pom.artifactId = 'qr'
+                pom.version = '1.0.0'
+//                repository(url: mavenConfig.debugUrl) {
+//                    authentication(userName: mavenConfig.username, password: mavenConfig.userpassword)
+//                }
+
+                //如果上传到release版本库 就放开注释在这里上传
+                repository(url: mavenConfig.releaseUrl) {
+                    authentication(userName: mavenConfig.username, password: mavenConfig.userpassword)
+                }
+            }
+        }
+
+    }
+
+    task androidSourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.sourceFiles
+    }
+
+    //解决 JavaDoc 中文注释生成失败的问题
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+        options.addStringOption('charSet', 'UTF-8')
+    }
+    artifacts {
+        archives androidSourcesJar
+    }
+}
