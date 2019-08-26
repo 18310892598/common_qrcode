@@ -4,10 +4,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+
 import com.ole.travel.qr.zxing.camera.CameraManager;
 import com.ole.travel.qr.zxing.camera.open.CameraFacing;
 import com.ole.travel.qr.zxing.common.Scanner;
 import com.ole.travel.qr.zxing.decode.DecodeFormatManager;
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -77,7 +79,9 @@ public class ScannerView extends FrameLayout implements SurfaceHolder.Callback {
         mCameraManager.setScanFullScreen(mScanFullScreen);//是否全屏扫描
         mCameraManager.setInvertScan(invertScan);
         mViewfinderView.setCameraManager(mCameraManager);
-        if (mBeepManager != null) mBeepManager.updatePrefs();
+        if (mBeepManager != null) {
+            mBeepManager.updatePrefs();
+        }
 
         mScannerViewHandler = null;
 
@@ -99,7 +103,9 @@ public class ScannerView extends FrameLayout implements SurfaceHolder.Callback {
             mScannerViewHandler.quitSynchronously();
             mScannerViewHandler = null;
         }
-        if (mBeepManager != null) mBeepManager.close();
+        if (mBeepManager != null) {
+            mBeepManager.close();
+        }
         mCameraManager.closeDriver();
         mViewfinderView.laserLineBitmapRecycle();
     }
@@ -121,8 +127,9 @@ public class ScannerView extends FrameLayout implements SurfaceHolder.Callback {
                 mScannerViewHandler = new ScannerViewHandler(this, decodeFormats, mCameraManager);
             }
             //设置扫描框大小
-            if (laserFrameWidth > 0 && laserFrameHeight > 0)
+            if (laserFrameWidth > 0 && laserFrameHeight > 0) {
                 mCameraManager.setManualFramingRect(laserFrameWidth, laserFrameHeight);
+            }
         } catch (IOException ioe) {
             Log.w(TAG, ioe);
         } catch (RuntimeException e) {
@@ -389,7 +396,9 @@ public class ScannerView extends FrameLayout implements SurfaceHolder.Callback {
      */
     public ScannerView toggleLight(boolean mode) {
         this.lightMode = mode;
-        if (mCameraManager != null) mCameraManager.setTorch(lightMode);
+        if (mCameraManager != null) {
+            mCameraManager.setTorch(lightMode);
+        }
         return this;
     }
 
@@ -509,8 +518,9 @@ public class ScannerView extends FrameLayout implements SurfaceHolder.Callback {
      * @param delayMS 毫秒
      */
     public void restartPreviewAfterDelay(long delayMS) {
-        if (mScannerViewHandler != null)
+        if (mScannerViewHandler != null) {
             mScannerViewHandler.sendEmptyMessageDelayed(Scanner.RESTART_PREVIEW, delayMS);
+        }
     }
 
     ViewfinderView getViewfinderView() {

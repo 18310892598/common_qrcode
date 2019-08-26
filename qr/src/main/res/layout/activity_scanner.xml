@@ -1,29 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.ole.travel.qr.zxing.ScannerView
         android:id="@+id/scanner_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/scan_bg" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
+
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="16dp"
+        android:contentDescription="@null"
+        android:src="@drawable/select_flash_light"/>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/back"
+        app:layout_constraintBottom_toBottomOf="@id/back"
+        android:textColor="#ffffffff"
+        android:textSize="16sp"
+        android:text="扫一扫"/>
 
     <TextView
         android:id="@+id/flash_light_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="70dp"
+        android:layout_marginTop="168dp"
         android:drawableTop="@drawable/select_flash_light"
-        android:drawablePadding="10dp"
-        android:text="打开"
+        android:drawablePadding="8dp"
+        android:text="清除开灯"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:textColor="#ff0000ff"
-        android:textSize="16dp" />
+        android:textColor="#ffffffff"
+        android:textSize="14sp" />
 
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

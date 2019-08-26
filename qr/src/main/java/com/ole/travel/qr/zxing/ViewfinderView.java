@@ -227,7 +227,7 @@ final class ViewfinderView extends View {
      */
     private void drawFrame(Canvas canvas, Rect frame) {
         paint.setColor(laserFrameColor);//扫描边框白色
-        paint.setStrokeWidth(6);
+        paint.setStrokeWidth(Scanner.dp2px(getContext(),1));
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(frame, paint);
     }
@@ -246,7 +246,9 @@ final class ViewfinderView extends View {
                     , laserLineTop + laserLineHeight, paint);
         } else {
             if (laserLineBitmap == null)//图片资源文件转为 Bitmap
+            {
                 laserLineBitmap = BitmapFactory.decodeResource(getResources(), laserLineResId);
+            }
             int height = laserLineBitmap.getHeight();//取原图高
             //网格图片
             if (isLaserGridLine) {
