@@ -15,7 +15,7 @@ afterEvaluate { project ->
             mavenDeployer {
                 pom.groupId = 'com.ole.travel'
                 pom.artifactId = 'qr'
-                pom.version = '1.0.0'
+                pom.version = '1.0.1'
 //                repository(url: mavenConfig.debugUrl) {
 //                    authentication(userName: mavenConfig.username, password: mavenConfig.userpassword)
 //                }
