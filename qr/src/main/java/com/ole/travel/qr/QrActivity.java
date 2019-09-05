@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 import com.google.zxing.BarcodeFormat;
@@ -27,6 +28,7 @@ import com.google.zxing.Result;
 import com.google.zxing.client.result.ParsedResult;
 import com.ole.travel.qr.zxing.OnScannerCompletionListener;
 import com.ole.travel.qr.zxing.ScannerView;
+import com.ole.travel.qr.zxing.common.Scanner;
 
 import java.lang.ref.WeakReference;
 
@@ -94,6 +96,13 @@ public class QrActivity extends AppCompatActivity implements OnScannerCompletion
         mScannerView.setLaserColor(0x00B1D0FF);
         mScannerView.setLaserFrameBoundColor(0xffB1D0FF);
         mScannerView.setLaserFrameColor(0x80ffffff);
+
+        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) mFlashLightTv.getLayoutParams();
+        layoutParams.topMargin = Scanner.dp2px(this, 424);
+        mFlashLightTv.setLayoutParams(layoutParams);
+//        la
+
+
 //        mScannerView.setLaserFrameBoundColor(getResources().getColor(R.color.frame_bound));
 //        mScannerView.setLaserFrameColor(getResources().getColor(R.color.frame_bound));
     }
@@ -102,6 +111,7 @@ public class QrActivity extends AppCompatActivity implements OnScannerCompletion
     protected void onResume() {
         super.onResume();
         mScannerView.onResume();
+
     }
 
     @Override
