@@ -24,8 +24,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+
 import com.ole.travel.qr.zxing.camera.CameraManager;
 import com.ole.travel.qr.zxing.common.Scanner;
+
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -144,7 +146,6 @@ final class ViewfinderView extends View {
         int width = canvas.getWidth();
         int height = canvas.getHeight();
 
-        Log.i("view", "width:" + width + " height:" + height);
         paint.setColor(resultBitmap != null ? resultColor : maskColor);
         canvas.drawRect(0, 0, width, frame.top, paint);
         canvas.drawRect(0, frame.top, frame.left, frame.bottom + 1, paint);
@@ -227,7 +228,7 @@ final class ViewfinderView extends View {
      */
     private void drawFrame(Canvas canvas, Rect frame) {
         paint.setColor(laserFrameColor);//扫描边框白色
-        paint.setStrokeWidth(Scanner.dp2px(getContext(),1));
+        paint.setStrokeWidth(Scanner.dp2px(getContext(), 1));
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(frame, paint);
     }
