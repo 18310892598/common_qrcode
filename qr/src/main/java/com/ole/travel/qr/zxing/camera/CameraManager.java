@@ -47,8 +47,8 @@ public final class CameraManager {
 
     private static final int MIN_FRAME_WIDTH = 240;
     private static final int MIN_FRAME_HEIGHT = 240;
-    public static final int MAX_FRAME_WIDTH = 1200; // = 5/8 * 1920
-    public static final int MAX_FRAME_HEIGHT = 675; // = 5/8 * 1080
+    public static final int MAX_FRAME_WIDTH = 675; // = 5/8 * 1080
+    public static final int MAX_FRAME_HEIGHT = 450; // = 5/8 * 720
 
     private final Context context;
     private final CameraConfigurationManager configManager;
@@ -232,7 +232,7 @@ public final class CameraManager {
      *
      * @return The rectangle to draw on screen in window coordinates.
      */
-    public synchronized Rect getFramingRect() {
+    public synchronized Rect  getFramingRect() {
         if (framingRect == null) {
             if (camera == null) {
                 return null;

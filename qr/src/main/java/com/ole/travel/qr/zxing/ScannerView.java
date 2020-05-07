@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import com.ole.travel.qr.R;
 import com.ole.travel.qr.zxing.camera.CameraManager;
 import com.ole.travel.qr.zxing.camera.open.CameraFacing;
 import com.ole.travel.qr.zxing.common.Scanner;
@@ -12,10 +13,14 @@ import com.ole.travel.qr.zxing.decode.DecodeFormatManager;
 
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+
+import androidx.core.app.ActivityCompat;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
@@ -50,6 +55,8 @@ public class ScannerView extends FrameLayout implements SurfaceHolder.Callback {
     private boolean mScanFullScreen;//全屏扫描
     private boolean invertScan;//扫描反色二维码（黑底白色码）
 
+    private TextView tvLight;
+
     public ScannerView(Context context) {
         this(context, null);
     }
@@ -66,12 +73,34 @@ public class ScannerView extends FrameLayout implements SurfaceHolder.Callback {
     private void init(Context context, AttributeSet attrs, int defStyle) {
         hasSurface = false;
 
+
         mSurfaceView = new SurfaceView(context, attrs, defStyle);
         addView(mSurfaceView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
         mViewfinderView = new ViewfinderView(context, attrs);
         addView(mViewfinderView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+
+
+        tvLight = new TextView(context, attrs, defStyle);
+        LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        params.gravity = Gravity.CENTER_HORIZONTAL;
+        tvLight.setText("轻触开灯");
+        tvLight.setGravity(Gravity.CENTER);
+        tvLight.setTextColor(0xffff0000);
+        tvLight.setTextSize(14);
+        tvLight.setCompoundDrawablesWithIntrinsicBounds(null, ActivityCompat.getDrawable(context,R.drawable.ic_light_on),null,null);
+
+
+        addView(tvLight, params);
     }
+
+    public TextView getTvLight() {
+        LayoutParams params= (LayoutParams) tvLight.getLayoutParams();
+        Log.d(TAG, "getTvLight: "+tvLight.getLineHeight());
+        params.topMargin=laserFrameTopMargin+laserFrameHeight+mViewfinderView.getDrawTextBottomPosition()+Scanner.dp2px(getContext(), 48f)+tvLight.getLineHeight();
+        return tvLight;
+    }
+
 
     public void onResume() {
         mCameraManager = new CameraManager(getContext(), mCameraFacing);

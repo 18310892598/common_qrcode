@@ -117,6 +117,10 @@ final class ViewfinderView extends View {
         }
     }
 
+    public int getDrawTextBottomPosition(){
+        return drawTextMargin;
+    }
+
     private void moveLaserSpeed(Rect frame) {
         //初始化扫描线最顶端位置
         if (laserLineTop == 0) {

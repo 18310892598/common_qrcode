@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 import com.google.zxing.BarcodeFormat;
@@ -28,7 +27,6 @@ import com.google.zxing.Result;
 import com.google.zxing.client.result.ParsedResult;
 import com.ole.travel.qr.zxing.OnScannerCompletionListener;
 import com.ole.travel.qr.zxing.ScannerView;
-import com.ole.travel.qr.zxing.common.Scanner;
 
 import java.lang.ref.WeakReference;
 
@@ -79,8 +77,7 @@ public class QrActivity extends AppCompatActivity implements OnScannerCompletion
 
         ivBack = findViewById(R.id.back);
         ivBack.setOnClickListener(this);
-        mFlashLightTv = findViewById(R.id.flash_light_tv);
-        mFlashLightTv.setOnClickListener(this);
+
         mScannerView = findViewById(R.id.scanner_view);
 
         mScannerView
@@ -97,14 +94,14 @@ public class QrActivity extends AppCompatActivity implements OnScannerCompletion
         mScannerView.setLaserFrameBoundColor(0xffB1D0FF);
         mScannerView.setLaserFrameColor(0x80ffffff);
 
-        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) mFlashLightTv.getLayoutParams();
-        layoutParams.topMargin = Scanner.dp2px(this, 424);
-        mFlashLightTv.setLayoutParams(layoutParams);
-//        la
+        mFlashLightTv = mScannerView.getTvLight();
+        mFlashLightTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleFlashLight(!mLightState);
+            }
+        });
 
-
-//        mScannerView.setLaserFrameBoundColor(getResources().getColor(R.color.frame_bound));
-//        mScannerView.setLaserFrameColor(getResources().getColor(R.color.frame_bound));
     }
 
     @Override
@@ -112,6 +109,12 @@ public class QrActivity extends AppCompatActivity implements OnScannerCompletion
         super.onResume();
         mScannerView.onResume();
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override
@@ -178,7 +181,7 @@ public class QrActivity extends AppCompatActivity implements OnScannerCompletion
 
         int i = view.getId();
         if (i == R.id.flash_light_tv) {
-            handleFlashLight(!mLightState);
+            ;
         } else if (i == R.id.back) {
             this.finish();
         }
