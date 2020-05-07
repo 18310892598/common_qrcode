@@ -11,6 +11,7 @@ import com.ole.travel.qr.zxing.camera.open.CameraFacing;
 import com.ole.travel.qr.zxing.common.Scanner;
 import com.ole.travel.qr.zxing.decode.DecodeFormatManager;
 
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -86,18 +87,28 @@ public class ScannerView extends FrameLayout implements SurfaceHolder.Callback {
         params.gravity = Gravity.CENTER_HORIZONTAL;
         tvLight.setText("轻触开灯");
         tvLight.setGravity(Gravity.CENTER);
-        tvLight.setTextColor(0xffff0000);
+        tvLight.setTextColor(0xffffffff);
+        tvLight.setBackgroundColor(0);
         tvLight.setTextSize(14);
-        tvLight.setCompoundDrawablesWithIntrinsicBounds(null, ActivityCompat.getDrawable(context,R.drawable.ic_light_on),null,null);
+        tvLight.setCompoundDrawablePadding(Scanner.dp2px(context, 8));
+        tvLight.setCompoundDrawablesWithIntrinsicBounds(null, ActivityCompat.getDrawable(context, R.drawable.ic_light_on), null, null);
 
 
         addView(tvLight, params);
     }
 
     public TextView getTvLight() {
-        LayoutParams params= (LayoutParams) tvLight.getLayoutParams();
-        Log.d(TAG, "getTvLight: "+tvLight.getLineHeight());
-        params.topMargin=laserFrameTopMargin+laserFrameHeight+mViewfinderView.getDrawTextBottomPosition()+Scanner.dp2px(getContext(), 48f)+tvLight.getLineHeight();
+        LayoutParams params = (LayoutParams) tvLight.getLayoutParams();
+        Drawable drawable = tvLight.getCompoundDrawables()[1];
+        if (null != drawable) {
+            params.topMargin += drawable.getBounds().height();
+            params.topMargin += tvLight.getCompoundDrawablePadding();
+        }
+        params.topMargin += laserFrameTopMargin;
+        params.topMargin += laserFrameHeight;
+        params.topMargin += mViewfinderView.getDrawTextBottomPosition();
+        //灯泡图片与说明文字的距离
+        params.topMargin+=Scanner.dp2px(getContext(),12);
         return tvLight;
     }
 

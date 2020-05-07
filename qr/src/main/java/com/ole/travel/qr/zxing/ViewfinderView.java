@@ -117,8 +117,17 @@ final class ViewfinderView extends View {
         }
     }
 
-    public int getDrawTextBottomPosition(){
-        return drawTextMargin;
+    public int getDrawTextBottomPosition() {
+
+        Rect bounds = new Rect();
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(drawTextColor);
+        paint.setTextSize(drawTextSize);
+        paint.getTextBounds(drawText, 0, drawText.length(), bounds);
+        return drawTextMargin + bounds.height();
     }
 
     private void moveLaserSpeed(Rect frame) {

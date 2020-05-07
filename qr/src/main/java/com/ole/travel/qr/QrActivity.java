@@ -156,7 +156,7 @@ public class QrActivity extends AppCompatActivity implements OnScannerCompletion
         // 释放光传感器
         mHandler.sendEmptyMessage(1);
 
-        mFlashLightTv.setSelected(isLight);
+        mFlashLightTv.setCompoundDrawablesWithIntrinsicBounds(null, ActivityCompat.getDrawable(this, isLight ? R.drawable.ic_light_on : R.drawable.ic_light_off), null, null);
         mFlashLightTv.setText(isLight ? "轻触关灯" : "轻触开灯");
     }
 
@@ -180,9 +180,7 @@ public class QrActivity extends AppCompatActivity implements OnScannerCompletion
     public void onClick(View view) {
 
         int i = view.getId();
-        if (i == R.id.flash_light_tv) {
-            ;
-        } else if (i == R.id.back) {
+        if (i == R.id.back) {
             this.finish();
         }
     }

@@ -38,19 +38,6 @@
         android:textSize="16sp"
         android:text="扫一扫"/>
 
-    <TextView
-        android:id="@+id/flash_light_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableTop="@drawable/select_flash_light"
-        android:drawablePadding="8dp"
-        android:text="清除开灯"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_horizontal"
-        android:textColor="#ffffffff"
-        android:textSize="14sp" />
 
 
 
