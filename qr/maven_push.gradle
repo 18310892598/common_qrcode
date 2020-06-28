@@ -14,11 +14,11 @@ afterEvaluate { project ->
         repositories {
             mavenDeployer {
                 pom.groupId = 'com.ole.travel'
-                pom.artifactId = 'qr'
-                pom.version = '1.0.2'
-//                repository(url: mavenConfig.debugUrl) {
-//                    authentication(userName: mavenConfig.username, password: mavenConfig.userpassword)
-//                }
+                pom.artifactId = 'oleqr'
+                pom.version = '1.1.0'
+                repository(url: mavenConfig.debugUrl) {
+                    authentication(userName: mavenConfig.username, password: mavenConfig.userpassword)
+                }
 
                 //如果上传到release版本库 就放开注释在这里上传
                 repository(url: mavenConfig.releaseUrl) {
