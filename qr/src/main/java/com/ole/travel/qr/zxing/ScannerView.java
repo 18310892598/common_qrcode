@@ -108,7 +108,7 @@ public class ScannerView extends FrameLayout implements SurfaceHolder.Callback {
         params.topMargin += laserFrameHeight;
         params.topMargin += mViewfinderView.getDrawTextBottomPosition();
         //灯泡图片与说明文字的距离
-        params.topMargin+=Scanner.dp2px(getContext(),12);
+        params.topMargin+=Scanner.dp2px(getContext(),52);
         return tvLight;
     }
 

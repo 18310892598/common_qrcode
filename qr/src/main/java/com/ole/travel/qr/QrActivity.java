@@ -87,12 +87,12 @@ public class QrActivity extends AppCompatActivity implements OnScannerCompletion
                 .setLaserLineResId(R.drawable.sweep_line_light_green)//线图
                 .toggleLight(false)
                 .setScanMode(BarcodeFormat.QR_CODE)
-                .setDrawText("将二维码/条形码放入框内，即可自动描", 14, 0xFFB1D0FF, true, 16)
+                .setDrawText("将二维码/条形码放入框内，即可自动描", 14, 0xffFFFFFF, true, 16)
                 .setLaserFrameTopMargin(100);
         mScannerView.setOnScannerCompletionListener(this);
-        mScannerView.setLaserColor(0x00B1D0FF);
-        mScannerView.setLaserFrameBoundColor(0xffB1D0FF);
-        mScannerView.setLaserFrameColor(0x80ffffff);
+        mScannerView.setLaserColor(0xff14A83E);
+        mScannerView.setLaserFrameBoundColor(0xffFFFFFF);
+        mScannerView.setLaserFrameColor(0x000000);
 
         mFlashLightTv = mScannerView.getTvLight();
         mFlashLightTv.setOnClickListener(new View.OnClickListener() {
