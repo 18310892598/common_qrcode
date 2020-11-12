@@ -8,7 +8,7 @@
 ###  Gradle配置
 ```groovy
 //app build.gradle配置
-implementation 'com.ole.travel:qr:1.0.3'
+implementation 'com.ole.travel:qr:1.2.0'
 //project build.gradle配置（用户名和密码根据自己账号密码配置）
 allprojects {
     repositories {
