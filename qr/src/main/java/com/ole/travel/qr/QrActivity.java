@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -34,6 +35,7 @@ public class QrActivity extends AppCompatActivity implements OnScannerCompletion
 
 
     private ImageView ivBack;
+    private ImageView ivCreateQr;
     TextView mFlashLightTv;
     ScannerView mScannerView;
     private boolean mLightState;
@@ -52,6 +54,7 @@ public class QrActivity extends AppCompatActivity implements OnScannerCompletion
         setContentView(R.layout.activity_scanner);
         initData();
         initView();
+
     }
 
     private void initData() {
@@ -76,6 +79,7 @@ public class QrActivity extends AppCompatActivity implements OnScannerCompletion
 
 
         ivBack = findViewById(R.id.back);
+        ivCreateQr = findViewById(R.id.iv_create_qr);
         ivBack.setOnClickListener(this);
 
         mScannerView = findViewById(R.id.scanner_view);
@@ -102,6 +106,7 @@ public class QrActivity extends AppCompatActivity implements OnScannerCompletion
             }
         });
 
+        ivCreateQr.setImageBitmap(CreateQrCodeHelper.createQRCodeBitmap("https://www.baidu.com", 800, 800, "1", Color.BLACK, Color.WHITE));
     }
 
     @Override

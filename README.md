@@ -44,6 +44,11 @@ allprojects {
         }
     }
 ```
+#### 生成二维码
+```java
+//示例代码
+CreateQrCodeHelper.createQRCodeBitmap("https://www.baidu.com", 800, 800, "1", Color.BLACK, Color.WHITE)
+```
 
 #### 混淆配置
 ```groovy
