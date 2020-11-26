@@ -16,10 +16,6 @@ afterEvaluate { project ->
                 pom.groupId = 'com.ole.travel'
                 pom.artifactId = 'oleqr'
                 pom.version = '1.2.0'
-                repository(url: mavenConfig.debugUrl) {
-                    authentication(userName: mavenConfig.username, password: mavenConfig.userpassword)
-                }
-
                 //如果上传到release版本库 就放开注释在这里上传
                 repository(url: mavenConfig.releaseUrl) {
                     authentication(userName: mavenConfig.username, password: mavenConfig.userpassword)
